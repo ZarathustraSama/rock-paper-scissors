@@ -16,11 +16,36 @@ function playRound (playerSelection, computerSelection) {
 }
 
 function game() {
+    playerScore = 0;
+    cpuScore = 0;
 
+    for (let i = 0; i < 5; i++) {
+        playerSelection = prompt('Rock, Paper or Scissors?');
+        computerSelection = getComputerChoice();
+        round_result = playRound(playerSelection, computerSelection);
+        switch (round_result.charAt(4)) {
+            case 'W':
+                playerScore++;
+                break;
+            case 'L':
+                cpuScore++;
+            default:
+                break;
+        }
+        console.log(round_result + `. Player ${playerScore}, CPU ${cpuScore}!`);        
+    }
+
+    if (playerScore > cpuScore) {
+        return `Player wins against CPU ${playerScore} to ${cpuScore}!`;
+    }
+    else if (playerScore < cpuScore) {
+        return `CPU wins againts Player ${cpuScore} to ${playerScore}!`;
+    }
+    else {
+        return `It's a Tie! Both Player and CPU achieved a score of ${playerScore}!`;
+    }
 }
 
 
 winner = ['rockscissors', 'paperrock', 'scissorspaper'];
-playerSelection = 'rock';
-computerSelection = getComputerChoice();
-console.log(game);
+console.log(game());
