@@ -47,9 +47,9 @@ function showScore() {
 
 function checkWin() {
     if (playerScore === 5 || cpuScore === 5) {
-        getWinner();
+        showWinner();
         const buttons = document.querySelectorAll('button');
-        buttons.forEach(button => button.removeEventListener('click'));
+        buttons.forEach(button => button.removeEventListener('click', this));
     }
     else return;
 }
@@ -64,6 +64,11 @@ function getWinner() {
     else {
         return `It's a Tie! Both Player and CPU achieved a score of ${playerScore}!`;
     }
+}
+
+function showWinner() {
+    const winnerDiv = document.querySelector('#winner');
+    winnerDiv.textContent = getWinner();
 }
 
 game();
