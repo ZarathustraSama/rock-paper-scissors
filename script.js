@@ -39,15 +39,22 @@ function showRoundWinner(roundWinner) {
 }
 
 function showScore() {
-    const scoreDiv = document.querySelector('#score');
-    
+    const playerScoreDiv = document.querySelector('#player-score');
+    const cpuScoreDiv = document.querySelector('#cpu-score');
+    playerScoreDiv.textContent = `Player: ${playerScore}`;
+    cpuScoreDiv.textContent = `CPU: ${cpuScore}`;
 }
 
 function checkWin() {
-
+    if (playerScore === 5 || cpuScore === 5) {
+        getWinner();
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(button => button.removeEventListener('click'));
+    }
+    else return;
 }
 
-function getWinner(playerScore, cpuScore) {
+function getWinner() {
     if (playerScore > cpuScore) {
         return `Player wins against CPU ${playerScore} to ${cpuScore}!`;
     }
@@ -59,4 +66,5 @@ function getWinner(playerScore, cpuScore) {
     }
 }
 
-game()
+game();
+showScore();
