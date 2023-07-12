@@ -47,7 +47,6 @@ function showScore() {
 function checkWin() {
     if (playerScore === 5 || cpuScore === 5) {
         showWinner();
-        buttons.forEach(button => button.removeEventListener('click', game));
     }
     else return;
 }
