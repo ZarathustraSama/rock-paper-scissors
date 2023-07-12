@@ -6,7 +6,7 @@ let cpuScore = 0;
 const buttons = document.querySelectorAll('button');
 buttons.forEach(button => {
     playerChoice = button.dataset.rps;
-    button.addEventListener('click', game(playerChoice, getComputerChoice()));
+    button.addEventListener('click', () => game(playerChoice, getComputerChoice()));
 });
 
 function getComputerChoice() {    
@@ -69,5 +69,4 @@ function showWinner() {
     winnerDiv.textContent = getWinner();
 }
 
-game();
 showScore();
