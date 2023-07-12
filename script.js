@@ -1,8 +1,7 @@
-const winner = ['rockscissors', 'paperrock', 'scissorspaper'];
 const choices = ['rock', 'paper', 'scissors'];
+const winner = ['rockscissors', 'paperrock', 'scissorspaper'];
 
-function getComputerChoice() {
-    
+function getComputerChoice() {    
     return choices[Math.floor(Math.random() * choices.length)];
 }
 
@@ -21,7 +20,7 @@ function game() {
 
     const buttons = document.querySelectorAll('button');
     buttons.forEach(button => {
-        button.onclick = () => console.log(playRound(button.dataset.rps, getComputerChoice()));
+        button.onclick = () => showRoundWinner(playRound(button.dataset.rps, getComputerChoice()));
     });
 }
 
@@ -43,3 +42,5 @@ function getWinner(playerScore, cpuScore) {
         return `It's a Tie! Both Player and CPU achieved a score of ${playerScore}!`;
     }
 }
+
+game()
