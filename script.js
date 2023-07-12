@@ -15,9 +15,14 @@ function playRound (playerSelection, computerSelection) {
     return s;
 }
 
-function game() {
+function game () {
     playerScore = 0;
     cpuScore = 0;
+
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => {
+        button.onclick = () => console.log(playRound(button.dataset.rps, getComputerChoice()));
+    });
 }
 
 function getWinner(playerScore, cpuScore) {
