@@ -3,6 +3,11 @@ const choices = ['rock', 'paper', 'scissors'];
 const winner = ['rockscissors', 'paperrock', 'scissorspaper'];
 let playerScore = 0;
 let cpuScore = 0;
+const buttons = document.querySelectorAll('button');
+buttons.forEach(button => {
+    playerChoice = button.dataset.rps;
+    button.addEventListener('click', game(playerChoice, getComputerChoice()));
+});
 
 function getComputerChoice() {    
     return choices[Math.floor(Math.random() * choices.length)];
@@ -17,18 +22,12 @@ function playRound(playerSelection, computerSelection) {
     return s;
 }
 
-function game() {
-    const buttons = document.querySelectorAll('button');
-    buttons.forEach(button => {
-        playerChoice = button.dataset.rps;
-        button.addEventListener('click', function () {
-            roundWinner = playRound(playerChoice, getComputerChoice());
-            roundWinner[4] === 'W' ? playerScore++ : cpuScore++;
-            showRoundWinner(roundWinner);
-            showScore();
-            checkWin();
-        });
-    });
+function game(playerChoice, computerChoice) {
+    roundWinner = playRound(playerChoice, computerChoice);
+    roundWinner[4] === 'W' ? playerScore++ : cpuScore++;
+    showRoundWinner(roundWinner);
+    showScore();
+    checkWin();
 }
 
 function showRoundWinner(roundWinner) {
@@ -48,8 +47,7 @@ function showScore() {
 function checkWin() {
     if (playerScore === 5 || cpuScore === 5) {
         showWinner();
-        const buttons = document.querySelectorAll('button');
-        buttons.forEach(button => button.removeEventListener('click', this));
+        buttons.forEach(button => button.removeEventListener('click', game));
     }
     else return;
 }
