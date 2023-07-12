@@ -21,11 +21,13 @@ function game() {
     const buttons = document.querySelectorAll('button');
     buttons.forEach(button => {
         playerChoice = button.dataset.rps;
-        button.onclick = function () {
+        button.addEventListener('click', function () {
             roundWinner = playRound(playerChoice, getComputerChoice());
+            roundWinner[4] === 'W' ? playerScore++ : cpuScore++;
             showRoundWinner(roundWinner);
-            
-        }
+            showScore();
+            checkWin();
+        });
     });
 }
 
@@ -34,6 +36,15 @@ function showRoundWinner(roundWinner) {
     const roundResultDiv = document.createElement('div');
     roundResultDiv.textContent = roundWinner;
     resultsDiv.appendChild(roundResultDiv);
+}
+
+function showScore() {
+    const scoreDiv = document.querySelector('#score');
+    
+}
+
+function checkWin() {
+
 }
 
 function getWinner(playerScore, cpuScore) {
