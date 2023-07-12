@@ -34,7 +34,9 @@ function game() {
         }
         console.log(round_result + `. Player ${playerScore}, CPU ${cpuScore}!`);        
     }
+}
 
+function getWinner(playerScore, cpuScore) {
     if (playerScore > cpuScore) {
         return `Player wins against CPU ${playerScore} to ${cpuScore}!`;
     }
