@@ -1,5 +1,8 @@
+// Global variables
 const choices = ['rock', 'paper', 'scissors'];
 const winner = ['rockscissors', 'paperrock', 'scissorspaper'];
+let playerScore = 0;
+let cpuScore = 0;
 
 function getComputerChoice() {    
     return choices[Math.floor(Math.random() * choices.length)];
@@ -15,12 +18,14 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-    playerScore = 0;
-    cpuScore = 0;
-
     const buttons = document.querySelectorAll('button');
     buttons.forEach(button => {
-        button.onclick = () => showRoundWinner(playRound(button.dataset.rps, getComputerChoice()));
+        playerChoice = button.dataset.rps;
+        button.onclick = function () {
+            roundWinner = playRound(playerChoice, getComputerChoice());
+            showRoundWinner(roundWinner);
+            
+        }
     });
 }
 
